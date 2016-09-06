@@ -9,6 +9,7 @@ angular.module('VoyageApp')
     self.addAddress = addAddress;
     self.deleteAddress = deleteAddress;
 
+
     $http.get("https://voyage-api.herokuapp.com/api/addresses")
       .then(function(response) {
         self.all = response.data;

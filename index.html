@@ -96,6 +96,10 @@
             });
 
             var markers = [];
+            // $.ajax{
+            //   url:
+            //
+            // }
             // Listen for the event fired when the user selects a prediction and retrieve
             // more details for that place.
             searchBox.addListener('places_changed', function() {
@@ -181,14 +185,19 @@
       </div>
 
       <div>
+        <label for="state"> State: </label>
+        <input type="text" name="state" ng-model="addressCtrl.newAddress.state">
+      </div>
+
+      <div>
         <label for="city"> City: </label>
         <input type="text" name="city" ng-model="addressCtrl.newAddress.city">
       </div>
 
-      <div>
+      <!-- <div>
         <label for="town"> Town: </label>
         <input type="text" name="town" ng-model="addressCtrl.newAddress.town">
-      </div>
+      </div> -->
 
       <div>
         <label for="street"> Street: </label>
