@@ -8,6 +8,8 @@
     <script src="js/app.js"></script>
     <script src="js/userController.js"></script>
     <script src="js/addressController.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
     <style>
      html, body {
@@ -16,8 +18,8 @@
        padding: 0;
      }
      #map {
-       height: 50%;
-       width: 50%;
+       height: 100%;
+       width: 70%;
      }
      .controls {
        margin-top: 10px;
@@ -64,9 +66,113 @@
        width: 345px;
      }
 
+    #addressFilter {
+      width: 30%;
+      min-height: 100%;
+      float: right;
+      background-color: #fff;
+      border-radius: 5px;
+
+    }
+
+    #miniNav {
+      width: 100%;
+      height: 35px;
+      background-color: grey;
+      color: white;
+      text-align: center;
+
+    }
+
+    .navbar {
+      margin-bottom: 0;
+    }
    </style>
   </head>
   <body>
+    <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li><a href="/drinks/selectType">Login</a></li>
+            <li><a href="#">About</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div id="addressFilter" ng-controller="AddressController as addressCtrl">
+      <div id="miniNav"> Find a Location </div>
+
+      <h3> Address Data </h3>
+      <div>
+          Filter Search: <input type="text" ng-model="filterSearch">
+      </div>
+      <ul id="addresses">
+        <li ng-repeat="address in addressCtrl.all | orderBy:'country' | filter:filterSearch ">
+          <strong>{{ address.country }}</strong> <em> {{ address.city }} </em> |
+          Town: {{ address.town }} , Street: {{ address.street }}
+          House Number: {{ address.house_num}} | Unit Number: {{ address.unit_num}}
+
+          <button ng-click="addressCtrl.deleteAddress(address)" class="delete"> X </button>
+        </li>
+      </ul>
+
+    <form id="newAddress" ng-submit="addressCtrl.addAddress()">
+      <div>
+        <label for="country"> Country:</label>
+        <input type="text" name="country" ng-model="addressCtrl.newAddress.country">
+      </div>
+
+      <div>
+        <label for="state"> State: </label>
+        <input type="text" name="state" ng-model="addressCtrl.newAddress.state">
+      </div>
+
+      <div>
+        <label for="city"> City: </label>
+        <input type="text" name="city" ng-model="addressCtrl.newAddress.city">
+      </div>
+
+      <!-- <div>
+        <label for="town"> Town: </label>
+        <input type="text" name="town" ng-model="addressCtrl.newAddress.town">
+      </div> -->
+
+      <div>
+        <label for="street"> Street: </label>
+        <input type="text" name="street" ng-model="addressCtrl.newAddress.street">
+      </div>
+
+      <div>
+        <label for="house_num"> House Number: </label>
+        <input type="text" name="house_num" ng-model="addressCtrl.newAddress.house_num">
+      </div>
+
+      <div>
+        <label for="unit_num"> Unit Number: </label>
+        <input type="text" name="unit_num" ng-model="addressCtrl.newAddress.unit_num">
+      </div>
+
+      <div>
+        <input type="submit" value="Add Address">
+      </div>
+    </form>
+  </div>
+
+
+
+
 
     <input id="pac-input" class="controls" type="text" placeholder="Search Box">
         <div id="map"></div>
@@ -185,66 +291,10 @@
 
 
 
-    <hr>
-  <div id="AddressBox">
-    <section ng-controller="AddressController as addressCtrl">
-      {{ addressCtrl.color }}
-      <h3> Address Data </h3>
-      <div>
-          Filter Search: <input type="text" ng-model="filterSearch">
-      </div>
-      <ul id="addresses">
-        <li ng-repeat="address in addressCtrl.all | orderBy:'country' | filter:filterSearch ">
-          <strong>{{ address.country }}</strong> <em> {{ address.city }} </em> |
-          Town: {{ address.town }} , Street: {{ address.street }}
-          House Number: {{ address.house_num}} | Unit Number: {{ address.unit_num}}
 
-          <button ng-click="addressCtrl.deleteAddress(address)" class="delete"> X </button>
-        </li>
-      </ul>
 
-    <form id="newAddress" ng-submit="addressCtrl.addAddress()">
-      <div>
-        <label for="country"> Country:</label>
-        <input type="text" name="country" ng-model="addressCtrl.newAddress.country">
-      </div>
 
-      <div>
-        <label for="state"> State: </label>
-        <input type="text" name="state" ng-model="addressCtrl.newAddress.state">
-      </div>
 
-      <div>
-        <label for="city"> City: </label>
-        <input type="text" name="city" ng-model="addressCtrl.newAddress.city">
-      </div>
-
-      <!-- <div>
-        <label for="town"> Town: </label>
-        <input type="text" name="town" ng-model="addressCtrl.newAddress.town">
-      </div> -->
-
-      <div>
-        <label for="street"> Street: </label>
-        <input type="text" name="street" ng-model="addressCtrl.newAddress.street">
-      </div>
-
-      <div>
-        <label for="house_num"> House Number: </label>
-        <input type="text" name="house_num" ng-model="addressCtrl.newAddress.house_num">
-      </div>
-
-      <div>
-        <label for="unit_num"> Unit Number: </label>
-        <input type="text" name="unit_num" ng-model="addressCtrl.newAddress.unit_num">
-      </div>
-
-      <div>
-        <input type="submit" value="Add Address">
-      </div>
-    </form>
-    </section>
-  </div>
 <hr>
   <section ng-controller="UserController as userCtrl">
     {{ userCtrl.me }}
