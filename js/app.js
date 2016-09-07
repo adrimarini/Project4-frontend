@@ -1,1 +1,1 @@
-angular.module('VoyageApp', []);
+angular.module('VoyageApp', ['ui.router']);
