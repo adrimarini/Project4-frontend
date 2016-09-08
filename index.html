@@ -110,6 +110,23 @@
     #logo {
       color: #FF0074;
     }
+
+    #filterWord1 {
+    float: left;
+    color: #fff;
+    font-size: 15pt;
+    margin-top: 10px;
+    margin-left: 5px;
+
+    }
+
+    #filterWord2 {
+      color: #9d9d9d;
+      font-size: 15pt;
+      margin-top: 10px;
+      margin-left: 5px;
+      float: left;
+    }
     .navbar {
       margin-bottom: 0;
     }
@@ -153,7 +170,7 @@
 <!-- address filter search begins below -->
     <div id="addressFilter" ng-controller="AddressController as addressCtrl">
       <div id="miniNav">
-
+        <span id="filterWord1">Browse</span> | <span id="filterWord2"> Addresses</span>
         <button type="button" id= "modal_button" class="btn btn-md" data-toggle="modal" data-target="#myModal2">
           Add address
         </button>
@@ -251,7 +268,7 @@
 
           function initAutocomplete() {
             var map = new google.maps.Map(document.getElementById('map'), {
-              center: {lat: 37.774929, lng: -122.419416},
+              center: {lat: 34.0522, lng: -118.2437},
               zoom: 13,
               mapTypeId: 'roadmap'
             });
