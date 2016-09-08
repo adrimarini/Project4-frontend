@@ -8,13 +8,15 @@ angular
       .state('loginPage', {
         url: '/',
         templateUrl: './templates/login.html',
-        controller: 'loginController',
+        controller: 'LoginController',
         controllerAs: 'vm'
       })
 
       .state('mainPage', {
         url: '/main',
-        templateUrl: 'index.html'
+        templateUrl: './templates/main.html',
+        controller: "AddressController",
+        controllerAs: "addressCtrl"
       })
 
       $urlRouterProvider.otherwise('/')

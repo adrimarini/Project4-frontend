@@ -20,6 +20,7 @@
     return service;
 
     function store(token) {
+      // $window.localStorage.setItem(TOKEN_KEY, token);
       $window.localStorage.setItem(TOKEN_KEY, token);
       $log.info("token stored, local storage: ", $window.localStorage);
     }

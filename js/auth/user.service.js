@@ -18,7 +18,7 @@
     function create(data) {
       var promise = $http({
         method: 'POST',
-        url:    '/api/users',
+        url:    'https://voyage-api.herokuapp.com/api/users',
         data:   data
       });
 

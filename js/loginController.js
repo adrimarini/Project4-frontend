@@ -33,7 +33,7 @@ angular
          // on success
          function(decodedToken) {
            $log.info('Logged in!', decodedToken);
-           $state.go('mainPage');
+          //  $state.go('mainPage');
          },
          // on error
          function(err) {
@@ -50,7 +50,7 @@ angular
          // on success
          function(decodedToken) {
            $log.info('Logged in!', decodedToken);
-           $state.go('searchPage');
+          //  $state.go('searchPage');
          },
          // on error
          function(err) {

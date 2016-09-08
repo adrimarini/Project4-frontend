@@ -24,7 +24,7 @@
     function logIn(data) {
       var promise = $http({
         method: 'POST',
-        url:    '/api/token',
+        url:    'https://voyage-api.herokuapp.com/api/users/token',
         data:   data,
         headers: {
           'Content-Type': 'application/json'
@@ -34,6 +34,7 @@
         // if the request succeeded, then run this
         // handler, and pass on the decoded token.
         function(res) {
+          console.log(res.data)
           token.store(res.data);
           return token.decode();
         }
