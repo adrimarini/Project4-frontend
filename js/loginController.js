@@ -6,7 +6,6 @@ angular
 
  function LoginController($log, authService, userService, $state) {
    var vm = this;
-
    // BINDINGS
    vm.signUp = {
      // email:    "pj@ga.co",
@@ -19,6 +18,7 @@ angular
      // email:    "pj@ga.co",
      // password: "12345"
    };
+   vm.authService = authService;
    vm.submitLogIn = submitLogIn;
    vm.conflict = false;
 

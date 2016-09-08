@@ -107,7 +107,12 @@
   <body>
     <script type="text/javascript">
   	$(document).ready(function(){
-  		$("#myModal").modal('show');
+      if (window.localStorage['adrisnotsosecrettokenkey']) {
+        console.log('you are logged in already')
+      } else {
+        $("#myModal").modal('show');
+      }
+
   	});
     </script>
 
@@ -119,35 +124,15 @@
                   <h4 class="modal-title">Log In or Sign Up to Continue ...</h4>
               </div>
               <div class="modal-body">
-                <div ui-view> </div>
+                <div ng-controller="LoginController as vm"><div ng-include="'templates/login.html'"></div> </div>
               </div>
           </div>
       </div>
   </div>
 
-    <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-        </div>
+    <div ng-controller="LoginController as loginCtrl"><div ng-include="'templates/nav.html'"></div></div>
 
-          <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-            <li><a href="#">Login</a></li>
-            <li><a href="#">About</a></li>
-          </ul>
-           <button ng-show="vm.authService.isLoggedIn()" ng-click= "vm.authService.logOut()" type="button" class="btn btn-default navbar-btn navbar-right">Sign out</button>
-        </div>
-      </div>
-    </nav>
-
-
+<!-- address filter search begins below -->
     <div id="addressFilter" ng-controller="AddressController as addressCtrl">
       <div id="miniNav">
 
@@ -294,8 +279,9 @@
                                       '<p>USER QUERY CODE HERE</p>'+
                                       '</div>'+
                                       '</div>';
+                  var addressInfo = address.street
                   var infowindow = new google.maps.InfoWindow({
-                     content: contentString
+                     content: addressInfo
                   });
            marker.addListener('click', function() {
             infowindow.open(map, marker);

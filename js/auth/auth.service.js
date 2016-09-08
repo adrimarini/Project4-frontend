@@ -22,6 +22,7 @@
     }
 
     function logIn(data) {
+      console.log("HELLO")
       var promise = $http({
         method: 'POST',
         url:    'https://voyage-api.herokuapp.com/api/users/token',
@@ -47,6 +48,7 @@
       return promise;
     }
     function logOut() {
+      console.log("in token destroy")
       token.destroy();
     }
   }
