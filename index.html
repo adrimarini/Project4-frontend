@@ -72,12 +72,13 @@
       background-color: #fff;
       border-radius: 5px;
 
+
     }
 
     #miniNav {
       width: 100%;
       height: 50px;
-      background-color: #222;
+      background-color: rgba(0, 0, 0, 0.9);;
       text-align: center;
 
 
@@ -170,7 +171,7 @@
 <!-- address filter search begins below -->
     <div id="addressFilter" ng-controller="AddressController as addressCtrl">
       <div id="miniNav">
-        <span id="filterWord1">Browse</span> | <span id="filterWord2"> Addresses</span>
+        <span id="filterWord1">Browse</span> <span id="filterWord2"> Addresses</span>
         <button type="button" id= "modal_button" class="btn btn-md" data-toggle="modal" data-target="#myModal2">
           Add address
         </button>
@@ -314,7 +315,7 @@
                                       '<p>USER QUERY CODE HERE</p>'+
                                       '</div>'+
                                       '</div>';
-                  var addressInfo = address.street
+                  var addressInfo = address.host || "No host defined :("
                   var infowindow = new google.maps.InfoWindow({
                      content: addressInfo
                   });
