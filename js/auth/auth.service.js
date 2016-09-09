@@ -25,6 +25,7 @@
       console.log("HELLO")
       var promise = $http({
         method: 'POST',
+        // /api/users/token'
         url:    'https://voyage-api.herokuapp.com/api/users/token',
         data:   data,
         headers: {

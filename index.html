@@ -128,14 +128,28 @@
       margin-left: 5px;
       float: left;
     }
+
+    #availHost{
+      text-align: center;
+
+    }
+
     .navbar {
       margin-bottom: 0;
     }
 
     .singleAddress{
+      margin: 15px;
 
     }
+    .addressRepeat {
+      overflow-y: scroll;
+      max-height: 600px;
+    }
 
+    li {
+      list-style: none;
+    }
 
    </style>
 
@@ -233,18 +247,19 @@
 
       </div>
 
-      <h3> Address Data </h3>
+      <h3 id="availHost"> Avaliable Host's</h3>
       <div>
           Filter Search: <input type="text" ng-model="filterSearch">
       </div>
-      <ul id="addresses">
+      <ul id="addresses" class="addressRepeat">
         <li ng-repeat="address in addressCtrl.all | orderBy:'country' | filter:filterSearch ">
           <div class="singleAddress"><strong>{{ address.country }}</strong> <em> {{ address.city }} </em> |
           Town: {{ address.town }} , Street: {{ address.street }}
-          House Number: {{ address.house_num}} | Unit Number: {{ address.unit_num}}</div>
+          House Number: {{ address.house_num}} | Unit Number: {{ address.unit_num}}
 
           <button ng-click="addressCtrl.deleteAddress(address)" class="delete"> X </button>
         </li>
+        </div>
       </ul>
 
 
@@ -315,7 +330,8 @@
                                       '<p>USER QUERY CODE HERE</p>'+
                                       '</div>'+
                                       '</div>';
-                  var addressInfo = address.host || "No host defined :("
+                  console.log("SOS HERE I AM", address)
+                  var addressInfo = address.host.firstname + ", " + address.host.email || "No host defined :("
                   var infowindow = new google.maps.InfoWindow({
                      content: addressInfo
                   });
