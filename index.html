@@ -398,12 +398,13 @@
                                       '</div>'+
                                       '</div>';
                   console.log("SOS HERE I AM", address)
-                  var addressInfo = address.host.firstname + ", " + address.host.email || "No host defined :("
+                  var addressInfo = "<strong>Host name:</strong> " + address.host.firstname + ", " + "<br>" + "<strong>Contact:</strong> " + address.host.email || "No host defined :("
                   var infowindow = new google.maps.InfoWindow({
                      content: addressInfo
                   });
            marker.addListener('click', function() {
             infowindow.open(map, marker);
+        
           });
 
           })
