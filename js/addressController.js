@@ -47,6 +47,7 @@ angular.module('VoyageApp')
       }
     } else {
       console.log("you did not create this address")
+      alert("Whoops! You must be the one to create the address in order to delete it.")
     }
     }
 
