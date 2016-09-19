@@ -1,6 +1,7 @@
 angular.module('VoyageApp')
   .controller('AddressController', AddressController);
 
+
   AddressController.$inject = ['$http'];
   function AddressController($http){
     var self = this;
@@ -27,18 +28,26 @@ angular.module('VoyageApp')
 
         location.reload();
         // reloads the page once the user creates an address so it can be seen the map& the modal closes
-        
+
       }, function(error) {
         console.log(error)
       });
     }
 
     function deleteAddress(address) {
-      console.log(address._id);
-      $http.delete("https://voyage-api.herokuapp.com/api/addresses"+address._id)
+      console.log(address.host._id);
+      console.log(user._id);
+      if(window.localStorage['adrisnotsosecrettokenkey']._id == address.host._id) {
+      $http.delete("https://voyage-api.herokuapp.com/api/addresses/"+address._id)
       .then(function() {
         self.all.splice(self.all.indexOf(address), 1);
-      })
+        console.log("address deleted")
+      }), function(error) {
+        console.log(error)
+      }
+    } else {
+      console.log("you did not create this address")
+    }
     }
 
 
