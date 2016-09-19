@@ -51,6 +51,9 @@
     function logOut() {
       console.log("in token destroy")
       token.destroy();
+
+      location.reload();
+     //  this reloads the page once the token is destroyed
     }
   }
 

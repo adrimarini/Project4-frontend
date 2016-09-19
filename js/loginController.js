@@ -54,7 +54,7 @@ angular
            location.reload();
           //  this reloads the page once the token is created and stored
            console.log("heyyooo im still here")
-          //  $state.go('searchPage');
+          
          },
          // on error
          function(err) {
