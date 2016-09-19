@@ -24,6 +24,10 @@ angular.module('VoyageApp')
       .then(function(response) {
         self.all.push(response.data);
         self.newAddress = {};
+
+        location.reload();
+        // reloads the page once the user creates an address so it can be seen the map& the modal closes
+        
       }, function(error) {
         console.log(error)
       });
