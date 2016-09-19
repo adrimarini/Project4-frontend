@@ -2,8 +2,8 @@ angular.module('VoyageApp')
   .controller('AddressController', AddressController);
 
 
-  AddressController.$inject = ['$http'];
-  function AddressController($http){
+  AddressController.$inject = ['$http', "tokenService"];
+  function AddressController($http, tokenService){
     var self = this;
     self.color = "blue";
     self.all = [];
@@ -36,8 +36,8 @@ angular.module('VoyageApp')
 
     function deleteAddress(address) {
       console.log(address.host._id);
-      console.log(user._id);
-      if(window.localStorage['adrisnotsosecrettokenkey']._id == address.host._id) {
+      console.log(tokenService.decode()._id);
+      if(tokenService.decode()._id == address.host._id) {
       $http.delete("https://voyage-api.herokuapp.com/api/addresses/"+address._id)
       .then(function() {
         self.all.splice(self.all.indexOf(address), 1);
