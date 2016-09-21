@@ -242,9 +242,11 @@
               </div>
           </div>
       </div>
-  </div>
+    </div>
 
-    <div ng-controller="LoginController as loginCtrl"><div ng-include="'templates/nav.html'"></div></div>
+    <div ng-controller="LoginController as loginCtrl">
+      <div ng-include="'templates/nav.html'"></div>
+    </div>
 
 <!-- address filter search begins below -->
     <div id="addressFilter" ng-controller="AddressController as addressCtrl">
@@ -253,62 +255,56 @@
         <button type="button" id= "modal_button" class="btn btn-md" data-toggle="modal" data-target="#myModal2">
           Add address
         </button>
-        <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal fade" id="myModal2" tabindex="-1" role="dialog"               aria-labelledby="myModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
-           <div class="modal-content">
-             <div class="modal-header">
+            <div class="modal-content">
+              <div class="modal-header">
                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                  <span aria-hidden="true">&times;</span>
                </button>
                <h4 class="modal-title" id="myModalLabel">ADD HOST ADDRESS</h4>
-             </div>
-             <div class="modal-body">
-        <form id="newAddress" ng-submit="addressCtrl.addAddress()">
-          <div>
-            <label for="country"> Country:</label>
-            <input type="text" name="country" ng-model="addressCtrl.newAddress.country">
-          </div>
+              </div>
+              <div class="modal-body">
+                <form id="newAddress" ng-submit="addressCtrl.addAddress()">
+                  <div>
+                    <label for="country"> Country:</label>
+                    <input type="text" name="country" ng-model="addressCtrl.newAddress.country">
+                  </div>
 
-          <div>
-            <label for="state"> State: </label>
-            <input type="text" name="state" ng-model="addressCtrl.newAddress.state">
-          </div>
+                  <div>
+                    <label for="state"> State: </label>
+                    <input type="text" name="state" ng-model="addressCtrl.newAddress.state">
+                  </div>
 
-          <div>
-            <label for="city"> City: </label>
-            <input type="text" name="city" ng-model="addressCtrl.newAddress.city">
-          </div>
+                  <div>
+                    <label for="city"> City: </label>
+                    <input type="text" name="city" ng-model="addressCtrl.newAddress.city">
+                  </div>
 
 
-          <div>
-            <label for="street"> Street: </label>
-            <input type="text" name="street" ng-model="addressCtrl.newAddress.street">
-          </div>
+                  <div>
+                    <label for="street"> Street: </label>
+                    <input type="text" name="street" ng-model="addressCtrl.newAddress.street">
+                  </div>
 
-          <div>
-            <label for="house_num"> House Number: </label>
-            <input type="text" name="house_num" ng-model="addressCtrl.newAddress.house_num">
-          </div>
+                  <div>
+                    <label for="house_num"> House Number: </label>
+                    <input type="text" name="house_num" ng-model="addressCtrl.newAddress.house_num">
+                  </div>
 
-          <div>
-            <label for="unit_num"> Unit Number: </label>
-            <input type="text" name="unit_num" ng-model="addressCtrl.newAddress.unit_num">
-          </div>
+                  <div>
+                    <label for="unit_num"> Unit Number: </label>
+                    <input type="text" name="unit_num" ng-model="addressCtrl.newAddress.unit_num">
+                  </div>
 
-          <div>
-            <input type="submit" value="Add Address">
-          </div>
-        </form>
-      </div>
-            <!-- <div class="modal-footer">
-              <button type="button" class="btn btn-secondary">Close</button>
-            </div> -->
+                  <div>
+                    <input type="submit" value="Add Address">
+                  </div>
+                </form>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-
-
-
       </div>
 
       <h3 id="availHost"> Avaliable Hosts</h3>
@@ -331,9 +327,7 @@
         </li>
         </div>
       </ul>
-
-
-  </div>
+    </div>
 
 
 
@@ -370,7 +364,7 @@
             });
 
             var markers = [];
-
+// ajax call that gets addresses from backend
             $.ajax({
               type: "GET",
               url: "https://voyage-api.herokuapp.com/api/addresses"
@@ -379,6 +373,7 @@
                 var lat;
                 var lng;
                 var latLng;
+                // for each address, pulls geocoded lat lng cordinates from backend and generates a marker on the map
                 jsonAddresses.forEach(function(address){
                   lat = parseFloat(address.lat)
                   lng = parseFloat(address.lng)
@@ -392,6 +387,7 @@
                     map: map,
                     title: 'Place'
                   })
+                  // for each marker attach an infowindow with host info 
                   var contentString = '<div id="content">'+
                                       '<div id="siteNotice">'+
                                       '</div>'+
@@ -401,7 +397,7 @@
                                       '</div>'+
                                       '</div>';
                   console.log("SOS HERE I AM", address)
-                  var addressInfo = "<strong>Host name:</strong> " + address.host.firstname + "<br>" + "<strong>Street: </strong>" + address.street + "<br>" + "<strong>Contact:</strong> " + address.host.email || "No host defined :(" 
+                  var addressInfo = "<strong>Host name:</strong> " + address.host.firstname + "<br>" + "<strong>Street: </strong>" + address.street + "<br>" + "<strong>Contact:</strong> " + address.host.email || "No host defined :("
                   var infowindow = new google.maps.InfoWindow({
                      content: addressInfo
                   });
